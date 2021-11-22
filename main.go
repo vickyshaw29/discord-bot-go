@@ -22,9 +22,9 @@ func init() {
 
 	Session.Token = os.Getenv("TOKEN")
 	Session.AddHandler(Router.OnMessageCreate)
-	Router.Route("help", "Display this message.", Router.Help)
-	Router.Route("joke", "Send a joke", Router.Joke)
-	Router.Route("quote", "Send a quote", Router.Quote)
+	Router.Route("/help", "Display this message.", Router.Help)
+	Router.Route("/joke", "Send a joke", Router.Joke)
+	Router.Route("/quote", "Send a quote", Router.Quote)
 }
 
 func main() {

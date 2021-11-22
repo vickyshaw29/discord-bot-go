@@ -15,6 +15,7 @@ type JokeResponse struct {
 }
 
 func (m *Mux) Joke(ds *discordgo.Session, dm *discordgo.Message, ctx *Context) {
+	fmt.Print(dm.Author.Username, "this is the user texting me")
 	client := &http.Client{}
 	req, _ := http.NewRequest("GET", "https://icanhazdadjoke.com", nil)
 	req.Header.Set("Accept", "application/json")
@@ -28,7 +29,8 @@ func (m *Mux) Joke(ds *discordgo.Session, dm *discordgo.Message, ctx *Context) {
 		log.Panic(err)
 	}
 
-	_, err = ds.ChannelMessageSend(dm.ChannelID, obj.Joke)
+	// _, err = ds.ChannelMessageSend(dm.ChannelID, obj.Joke)
+	_, err = ds.ChannelMessageSendReply(dm.ChannelID, obj.Joke, dm.MessageReference)
 	if err != nil {
 		fmt.Print(err)
 	}
